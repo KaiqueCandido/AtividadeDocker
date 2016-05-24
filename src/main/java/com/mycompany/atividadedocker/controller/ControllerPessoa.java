@@ -6,9 +6,10 @@
 package com.mycompany.atividadedocker.controller;
 
 import com.mycompany.atividadedocker.service.ServicePessoa;
+import entidade.Pessoa;
 import javax.ejb.EJB;
 import javax.inject.Named;
-import javax.faces.bean.RequestScoped;
+import javax.enterprise.context.RequestScoped;
 
 /**
  *
@@ -23,7 +24,7 @@ public class ControllerPessoa {
     @EJB
     private ServicePessoa servicePessoa;
     
-    public ControllerPessoa{
+    public ControllerPessoa (){
         pessoa = new Pessoa();
     }
 
@@ -37,6 +38,7 @@ public class ControllerPessoa {
     
     public String salvarPessoa(){
         servicePessoa.salvar(pessoa);
+        pessoa = new Pessoa();
         return null;
     }
 }

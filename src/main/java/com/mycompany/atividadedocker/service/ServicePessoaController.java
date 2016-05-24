@@ -5,14 +5,23 @@
  */
 package com.mycompany.atividadedocker.service;
 
+import DAO.DAO;
 import entidade.Pessoa;
+import javax.ejb.Stateless;
+import javax.inject.Inject;
 
 /**
  *
  * @author kaiqu
  */
-public interface ServicePessoa {
+@Stateless
+public class ServicePessoaController implements ServicePessoa {
 
-    boolean salvar(Pessoa pessoa);
+    @Inject
+    private DAO<Pessoa> dao;
 
+    @Override
+    public boolean salvar(Pessoa pessoa) {
+        return dao.salvar(pessoa);
+    }
 }
