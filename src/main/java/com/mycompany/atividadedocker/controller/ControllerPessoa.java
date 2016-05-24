@@ -5,10 +5,38 @@
  */
 package com.mycompany.atividadedocker.controller;
 
+import com.mycompany.atividadedocker.service.ServicePessoa;
+import javax.ejb.EJB;
+import javax.inject.Named;
+import javax.faces.bean.RequestScoped;
+
 /**
  *
  * @author kaiqu
  */
+@Named 
+@RequestScoped
 public class ControllerPessoa {
     
+    private Pessoa pessoa;
+    
+    @EJB
+    private ServicePessoa servicePessoa;
+    
+    public ControllerPessoa{
+        pessoa = new Pessoa();
+    }
+
+    public Pessoa getPessoa() {
+        return pessoa;
+    }
+
+    public void setPessoa(Pessoa pessoa) {
+        this.pessoa = pessoa;
+    }            
+    
+    public String salvarPessoa(){
+        servicePessoa.salvar(pessoa);
+        return null;
+    }
 }
