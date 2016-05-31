@@ -10,6 +10,8 @@ import entidade.Pessoa;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 
 /**
  *
@@ -39,6 +41,8 @@ public class ControllerPessoa {
     public String salvarPessoa(){
         servicePessoa.salvar(pessoa);
         pessoa = new Pessoa();
-        return null;
+        FacesMessage message = new FacesMessage("Sucesso!");
+        FacesContext.getCurrentInstance().addMessage(null, message);
+        return "index";
     }
 }
